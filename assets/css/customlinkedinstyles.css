@@ -1,0 +1,12 @@
+/* CONTACT */
+/*.linkedInStyles {
+	margin-top:20px;
+	background-image:none;
+	background-color:$main_color_rgba;
+	border:none;
+	box-shadow:none;
+}*/
+.LI-badge-container.vertical.light .LI-profile-pic-container {
+	background-image:none;
+	background-color:#1e1e1e;
+}
