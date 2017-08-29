@@ -6,13 +6,13 @@ jQuery(function($) {'use strict',
 	// Navigation Scroll
 	$(window).scroll(function(event) {
 		Scroll();
-	});	
-	
-	$('.navbar-collapse ul li a').click(function() {  
+	});
+
+	$('.navbar-collapse ul li a').click(function() {
 		$('html, body').animate({scrollTop: $(this.hash).offset().top - 72}, 1000);
 		return false;
 	});
-	
+
 	// User define function
 	function Scroll() {
 		var contentTop      =   [];
@@ -28,7 +28,7 @@ jQuery(function($) {'use strict',
 			if ( winTop > contentTop[i] - rangeTop ){
 				$('.navbar-collapse li.scroll')
 				.removeClass('active')
-				.eq(i).addClass('active');			
+				.eq(i).addClass('active');
 			}
 		})
 
@@ -41,7 +41,7 @@ jQuery(function($) {'use strict',
 		$('.hobbies').on('click', playSound);
 		$('.hobbies').on('mouseout', stopAllSound);
 	});
-	
+
 	// Slider Height
 	var slideHeight = $(window).height();
 	$('#main-carousel .item').css('height',slideHeight);
@@ -49,7 +49,7 @@ jQuery(function($) {'use strict',
 	$(window).resize(function(){'use strict',
 		$('#main-carousel .item').css('height',slideHeight);
 	});
-	
+
 	// portfolio filter
 	$(window).load(function(){'use strict',
 		$portfolio_selectors = $('.portfolio-filter >li>a');
@@ -59,7 +59,7 @@ jQuery(function($) {'use strict',
 				itemSelector : '.portfolio-item',
 				layoutMode : 'fitRows'
 			});
-			
+
 			$portfolio_selectors.on('click', function(){
 				$portfolio_selectors.removeClass('active');
 				$(this).addClass('active');
@@ -69,7 +69,7 @@ jQuery(function($) {'use strict',
 			});
 		}
 	});
-	
+
 	// Single Portfolio
 	$('#folio-items').on('click','.mask a',function(event){
 		event.preventDefault();
@@ -101,26 +101,26 @@ jQuery(function($) {'use strict',
 		$('html, body').animate({scrollTop:target_top}, 1400);
 
 		$("#single-portfolio").slideUp(1000);
-	});	
-	
+	});
+
 	//Initiat WOW JS
 	new WOW().init();
 });
 
-	
+
 	// Preloader function
-	var cSpeed=7;
+/*	var cSpeed=7;
 	var cWidth=75;
 	var cHeight=75;
 	var cTotalFrames=8;
 	var cFrameWidth=75;
 	var cImageSrc='assets/images/sprites.gif';
-	
-	var cImageTimeout=false;
-	
-	function startAnimation() {		
+
+	var cImageTimeout=false;*/
+
+/*	function startAnimation() {
 		document.getElementById('loaderImage').innerHTML='<canvas id="canvas" width="'+cWidth+'" height="'+cHeight+'"><p>Your browser does not support the canvas element.</p></canvas>';
-		
+
 		//FPS = Math.round(100/(maxSpeed+2-speed));
 		FPS = Math.round(100/cSpeed);
 		SECONDS_BETWEEN_FRAMES = 1 / FPS;
@@ -129,11 +129,11 @@ jQuery(function($) {'use strict',
 
 		g_run.width=cTotalFrames*cFrameWidth;
 		genImage.onload=function (){cImageTimeout=setTimeout(fun, 0)};
-		initCanvas();
-	}
-	
-	
-	function imageLoader(s, fun)//Pre-loads the sprites image
+		//initCanvas();
+	}*/
+
+
+/*	function imageLoader(s, fun)//Pre-loads the sprites image
 	{
 		clearTimeout(cImageTimeout);
 		cImageTimeout=0;
@@ -142,18 +142,18 @@ jQuery(function($) {'use strict',
 		genImage.onerror=new Function('alert(\'Could not load the image\')');
 		genImage.src=s;
 	}
-	
+
 	//The following code starts the animation
-	new imageLoader(cImageSrc, 'startAnimation()');
+	new imageLoader(cImageSrc, 'startAnimation()');*/
 
 function stopAllSound() {
-	$('.sound').each(function() {		
+	$('.sound').each(function() {
 		this.pause();
 		this.currentTime = 0;
 	});
 }
 
-function playSound() {	
+function playSound() {
 	var audioElm = $(this).find('.sound').get(0);
 	var status = audioElm.paused;
 	stopAllSound();
@@ -161,3 +161,38 @@ function playSound() {
 		audioElm.play();
 	}
 }
+
+// Normalize Carousel Heights - pass in Bootstrap Carousel items.
+$.fn.carouselHeights = function() {
+  var items = $(this), //grab all slides
+      heights = [], //create empty array to store height values
+      tallest; //create variable to make note of the tallest slide
+
+  var normalizeHeights = function() {
+    items.each(function() { //add heights to array
+        heights.push($(this).height());
+    });
+    tallest = Math.max.apply(null, heights); //cache largest value
+    items.each(function() {
+        $(this).css('min-height',tallest + 'px');
+    });
+  };
+
+  normalizeHeights();
+
+  $(window).on('resize orientationchange', function () {
+    //reset vars
+    tallest = 0;
+    heights.length = 0;
+    items.each(function() {
+        $(this).css('min-height','0'); //reset min-height
+    });
+    normalizeHeights(); //run it again
+  });
+};
+
+jQuery(function($) {
+  $(window).on('load', function() {
+      $('#testimonial-slider .carousel-inner .item').carouselHeights();
+  });
+});
