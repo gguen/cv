@@ -21,8 +21,8 @@ deny from all
  ExpiresByType image/x-icon "access plus 60 seconds"
  ExpiresByType text/css "access plus 2592000 seconds"
  ExpiresByType text/javascript "access plus 2592000 seconds"
- ExpiresByType text/html "access plus 60 seconds"
- ExpiresByType application/xhtml+xml "access plus 7200 seconds"
+ ExpiresByType text/html "access plus 10 seconds"
+ ExpiresByType application/xhtml+xml "access plus 10 seconds"
  ExpiresByType application/javascript A2592000
  ExpiresByType application/x-javascript "access plus 2592000 seconds"
  ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
@@ -38,7 +38,7 @@ deny from all
  Header set Cache-Control "max-age=2592000, private"
  </FilesMatch>
 <filesMatch "\.(html|htm)$">
-Header set Cache-Control "max-age=7200, public"
+Header set Cache-Control "max-age=10, public"
 </filesMatch>
 # Disable caching for scripts and other dynamic files
 <FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
