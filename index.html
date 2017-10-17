@@ -886,16 +886,20 @@ pane: {
   size: '90%',
 },
 xAxis: {
-  categories: ['HTML','PHP', 'CSS', 'Bootstrap', 'Javascript', 'jQuery', 'Angular (en cours)', 'Jekyll', 'Wordpress', 'Less, Sass', 'JSON, YAML', 'InDesign', 'Illustrator', 'Photoshop','Sketchup'],
+  categories: ['HTML','PHP', 'CSS', 'Bootstrap', 'Javascript', 'jQuery', 'Angular (en cours)', 'Gulp (en cours)', 'Jekyll', 'Wordpress', 'Less, Sass', 'JSON, YAML', 'InDesign', 'Illustrator', 'Photoshop','Sketchup'],
   tickmarkPlacement: 'on',
   lineWidth: 0,
   margin: 0,
   labels: {
   	style: {
-  		color: '#fff',
+      width: 'auto',
+      color: '#fff',
   		fontSize: '12pt',
-  		fontFamily: "'Yanone Kaffeesatz', sans-serif"
-  	}
+  		fontFamily: "'Yanone Kaffeesatz', sans-serif",
+  		textAlign: 'center',
+  		whiteSpace: 'nowrap'
+    },
+    useHTML : true
   }
 },
 yAxis: {
@@ -928,7 +932,7 @@ credits: {
 },
 series: [{
   name: 'Skills',
-  data: [90, 65, 80, 70, 75, 75, 35, 90, 70, 70, 75, 65, 80, 70, 75],
+  data: [90, 65, 80, 70, 75, 75, 35, 30, 90, 70, 70, 75, 65, 80, 70, 75],
   pointPlacement: 'on',
   color: '#FFE401'
 }],
